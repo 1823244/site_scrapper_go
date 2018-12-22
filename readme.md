@@ -12,7 +12,7 @@ https://www.moex.com/ru/contract.aspx?code=BR-1.19
 
 На нужной странице нас интересует таблица:
 
-​```
+​```html
  <input type="text" id="optDate" style="width: 70px;" ng-show="engine!='options' && isReadyContractSeries" />
     <strong ng-show="engine!='options' && isReadyContractSeries">Открытые позиции *</strong>
     <table class="contract-open-positions table1" ng-show="engine!='options' && isReadyContractSeries" style="margin-bottom: 0;">
