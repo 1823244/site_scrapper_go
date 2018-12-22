@@ -8,11 +8,48 @@ https://www.moex.com/ru/contract.aspx?code=BR-1.19
 Учитываем, что код инструмента периодически меняется (BR-1.19 - каждый месяц)  
 
 Также возможна ситуация, когда вместо реальной страницы с данными сайт сначала показывает лицензионное соглашение,  
-где нужно нажать ссылку "Согласен".  
+где нужно нажать ссылку "Согласен".  Дополнение. На странице есть скрипт, проверяющий куки на предмет того, показывалось пользователю лицензионное соглашение или нет. Может быть получится генерировать кук, чтобы ЛС не отображалось.  
 
-На нужной странице нас интересует таблица:
+```
+<script>
+    var language = "ru";
+    
+    $(function () {
 
-​```html
+        if (typeof ($.cookie('disclaimerAgreementCookie')) != "undefined") {
+            $("#dialog-confirm").hide();
+            return;
+        }
+
+        //$("#content-disclaimer").load("/content/disclaimers/disclaimerru.html");
+        $("#disclaimer-modal").load("/static-content/disclaimers/disclaimerru.html");
+        $('.ui-dialog-buttonpane').hide();
+
+        if (language == 'EN') $('.disclaimer__buttons a').eq(0).text('I Agree');
+        if (language == 'EN') $('.disclaimer__buttons a').eq(1).text('I Do Not Agree');
+        $('body').on('click', '.disclaimer__buttons a', function () {
+            if ($(this).attr('data-dismiss') == 'modal') {
+                $('#disclaimer-modal').fadeOut();
+                $('.ui-widget-overlay').hide();
+                $('.ui-dialog').hide();
+                $.cookie("disclaimerAgreementCookie", 1, { expires: 365, path: '/' });
+            }
+        });
+
+
+        $('#disclaimer-modal').show();
+
+        if (typeof ($.cookie('disclaimerAgreementCookie')) != "undefined")
+        {
+            $("#dialog-confirm").hide();
+            return;
+        }
+              
+```
+
+
+На нужной странице нас интересует таблица (скачайте этот файл, чтобы посмотреть исходный html-код):
+
  <input type="text" id="optDate" style="width: 70px;" ng-show="engine!='options' && isReadyContractSeries" />
     <strong ng-show="engine!='options' && isReadyContractSeries">Открытые позиции *</strong>
     <table class="contract-open-positions table1" ng-show="engine!='options' && isReadyContractSeries" style="margin-bottom: 0;">
@@ -63,5 +100,12 @@ https://www.moex.com/ru/contract.aspx?code=BR-1.19
             * Суммарно по всем опционам , базовым активом которых является Сырая нефть сорта Brent, по всем страйкам
         </div>
     </div>
-​```
-Обратите внимание, здесь универсальный код для фьючерсов и опционов. Пока работаем с фьючерсами.  
+
+Обратите внимание, здесь применяется универсальный программный код для фьючерсов и опционов. Пока работаем с фьючерсами.  
+
+Основной вопрос (пока) - как отработает шаблон (очень похоже на Django) при программном чтении страницы?:  
+
+```
+{{openOptions[0].PhysicalLong | limitTo:8 | number}}
+```
+
