@@ -12,7 +12,7 @@ https://www.moex.com/ru/contract.aspx?code=BR-1.19
 
 На нужной странице нас интересует таблица:
 
-'''
+​```
  <input type="text" id="optDate" style="width: 70px;" ng-show="engine!='options' && isReadyContractSeries" />
     <strong ng-show="engine!='options' && isReadyContractSeries">Открытые позиции *</strong>
     <table class="contract-open-positions table1" ng-show="engine!='options' && isReadyContractSeries" style="margin-bottom: 0;">
@@ -63,5 +63,5 @@ https://www.moex.com/ru/contract.aspx?code=BR-1.19
             * Суммарно по всем опционам , базовым активом которых является Сырая нефть сорта Brent, по всем страйкам
         </div>
     </div>
-'''
+​```
 Обратите внимание, здесь универсальный код для фьючерсов и опционов. Пока работаем с фьючерсами.  
