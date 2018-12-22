@@ -1,36 +1,36 @@
-Базовый пример можно посмотреть по этой ссылке  
+п»їР‘Р°Р·РѕРІС‹Р№ РїСЂРёРјРµСЂ РјРѕР¶РЅРѕ РїРѕСЃРјРѕС‚СЂРµС‚СЊ РїРѕ СЌС‚РѕР№ СЃСЃС‹Р»РєРµ  
 https://vk.com/videos463580667?z=video-16108331_456259536%2Fpl_463580667_-2
 
-В этом проекте попробуем дотянуться до сайта московской биржи и получить сведения об открытых позициях по деривативам,  
-например  
+Р’ СЌС‚РѕРј РїСЂРѕРµРєС‚Рµ РїРѕРїСЂРѕР±СѓРµРј РґРѕС‚СЏРЅСѓС‚СЊСЃСЏ РґРѕ СЃР°Р№С‚Р° РјРѕСЃРєРѕРІСЃРєРѕР№ Р±РёСЂР¶Рё Рё РїРѕР»СѓС‡РёС‚СЊ СЃРІРµРґРµРЅРёСЏ РѕР± РѕС‚РєСЂС‹С‚С‹С… РїРѕР·РёС†РёСЏС… РїРѕ РґРµСЂРёРІР°С‚РёРІР°Рј,  
+РЅР°РїСЂРёРјРµСЂ  
 https://www.moex.com/ru/contract.aspx?code=BR-1.19  
 
-Учитываем, что код инструмента периодически меняется (BR-1.19 - каждый месяц)  
+РЈС‡РёС‚С‹РІР°РµРј, С‡С‚Рѕ РєРѕРґ РёРЅСЃС‚СЂСѓРјРµРЅС‚Р° РїРµСЂРёРѕРґРёС‡РµСЃРєРё РјРµРЅСЏРµС‚СЃСЏ (BR-1.19 - РєР°Р¶РґС‹Р№ РјРµСЃСЏС†)  
 
-Также возможна ситуация, когда вместо реальной страницы с данными сайт сначала показывает лицензионное соглашение,  
-где нужно нажать ссылку "Согласен".  
+РўР°РєР¶Рµ РІРѕР·РјРѕР¶РЅР° СЃРёС‚СѓР°С†РёСЏ, РєРѕРіРґР° РІРјРµСЃС‚Рѕ СЂРµР°Р»СЊРЅРѕР№ СЃС‚СЂР°РЅРёС†С‹ СЃ РґР°РЅРЅС‹РјРё СЃР°Р№С‚ СЃРЅР°С‡Р°Р»Р° РїРѕРєР°Р·С‹РІР°РµС‚ Р»РёС†РµРЅР·РёРѕРЅРЅРѕРµ СЃРѕРіР»Р°С€РµРЅРёРµ,  
+РіРґРµ РЅСѓР¶РЅРѕ РЅР°Р¶Р°С‚СЊ СЃСЃС‹Р»РєСѓ "РЎРѕРіР»Р°СЃРµРЅ".  
 
-На нужной странице нас интересует таблица:
+РќР° РЅСѓР¶РЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ РЅР°СЃ РёРЅС‚РµСЂРµСЃСѓРµС‚ С‚Р°Р±Р»РёС†Р°:
 
 '''
  <input type="text" id="optDate" style="width: 70px;" ng-show="engine!='options' && isReadyContractSeries" />
-    <strong ng-show="engine!='options' && isReadyContractSeries">Открытые позиции *</strong>
+    <strong ng-show="engine!='options' && isReadyContractSeries">РћС‚РєСЂС‹С‚С‹Рµ РїРѕР·РёС†РёРё *</strong>
     <table class="contract-open-positions table1" ng-show="engine!='options' && isReadyContractSeries" style="margin-bottom: 0;">
         <tbody >
             <tr>
                 <th rowspan="2"></th>
-                <th colspan="2" class="white-border-column">Физические лица</th>
-                <th colspan="2" class="white-border-column">Юридические лица</th>
-                <th rowspan="2">Итого</th>
+                <th colspan="2" class="white-border-column">Р¤РёР·РёС‡РµСЃРєРёРµ Р»РёС†Р°</th>
+                <th colspan="2" class="white-border-column">Р®СЂРёРґРёС‡РµСЃРєРёРµ Р»РёС†Р°</th>
+                <th rowspan="2">РС‚РѕРіРѕ</th>
             </tr>
             <tr>
-                <th>Длинные</th>
-                <th>Короткие</th>
-                <th>Длинные</th>
-                <th>Короткие</th>
+                <th>Р”Р»РёРЅРЅС‹Рµ</th>
+                <th>РљРѕСЂРѕС‚РєРёРµ</th>
+                <th>Р”Р»РёРЅРЅС‹Рµ</th>
+                <th>РљРѕСЂРѕС‚РєРёРµ</th>
             </tr>
             <tr>
-                <td>Открытые позиции</td>
+                <td>РћС‚РєСЂС‹С‚С‹Рµ РїРѕР·РёС†РёРё</td>
                 <td class="text_right">{{openOptions[0].PhysicalLong | limitTo:8 | number}}</td>
                 <td class="text_right">{{openOptions[0].PhysicalShort | limitTo:8 | number}}</td>
                 <td class="text_right">{{openOptions[0].JuridicalLong | limitTo:8 | number}}</td>
@@ -38,7 +38,7 @@ https://www.moex.com/ru/contract.aspx?code=BR-1.19
                 <td class="text_right">{{openOptions[0].Summary | limitTo:8 | number}}</td>
             </tr>
             <tr>
-                <td>Изменение</td>
+                <td>РР·РјРµРЅРµРЅРёРµ</td>
                 <td class="text_right">{{openOptions[1].PhysicalLong | number}}</td>
                 <td class="text_right">{{openOptions[1].PhysicalShort | number}}</td>
                 <td class="text_right">{{openOptions[1].JuridicalLong | number}}</td>
@@ -46,7 +46,7 @@ https://www.moex.com/ru/contract.aspx?code=BR-1.19
                 <td class="text_right">{{openOptions[1].Summary | number}}</td>
             </tr>
             <tr>
-                <td>Количество лиц</td>
+                <td>РљРѕР»РёС‡РµСЃС‚РІРѕ Р»РёС†</td>
                 <td class="text_right">{{openOptions[2].PhysicalLong | number}}</td>
                 <td class="text_right">{{openOptions[2].PhysicalShort | number}}</td>
                 <td class="text_right">{{openOptions[2].JuridicalLong | number}}</td>
@@ -57,11 +57,11 @@ https://www.moex.com/ru/contract.aspx?code=BR-1.19
     </table>
     <div ng-switch on="type" style="margin: 4px 0 16px;">
         <div ng-switch-when="F" style="text-align: left;">
-            * Суммарно по всем фьючерсам, базовым активом которых является Сырая нефть сорта Brent
+            * РЎСѓРјРјР°СЂРЅРѕ РїРѕ РІСЃРµРј С„СЊСЋС‡РµСЂСЃР°Рј, Р±Р°Р·РѕРІС‹Рј Р°РєС‚РёРІРѕРј РєРѕС‚РѕСЂС‹С… СЏРІР»СЏРµС‚СЃСЏ РЎС‹СЂР°СЏ РЅРµС„С‚СЊ СЃРѕСЂС‚Р° Brent
         </div>
         <div ng-switch-default  style="text-align: left;">
-            * Суммарно по всем опционам , базовым активом которых является Сырая нефть сорта Brent, по всем страйкам
+            * РЎСѓРјРјР°СЂРЅРѕ РїРѕ РІСЃРµРј РѕРїС†РёРѕРЅР°Рј , Р±Р°Р·РѕРІС‹Рј Р°РєС‚РёРІРѕРј РєРѕС‚РѕСЂС‹С… СЏРІР»СЏРµС‚СЃСЏ РЎС‹СЂР°СЏ РЅРµС„С‚СЊ СЃРѕСЂС‚Р° Brent, РїРѕ РІСЃРµРј СЃС‚СЂР°Р№РєР°Рј
         </div>
     </div>
 '''
-Обратите внимание, здесь универсальный код для фьючерсов и опционов. Пока работаем с фьючерсами.  
+РћР±СЂР°С‚РёС‚Рµ РІРЅРёРјР°РЅРёРµ, Р·РґРµСЃСЊ СѓРЅРёРІРµСЂСЃР°Р»СЊРЅС‹Р№ РєРѕРґ РґР»СЏ С„СЊСЋС‡РµСЂСЃРѕРІ Рё РѕРїС†РёРѕРЅРѕРІ. РџРѕРєР° СЂР°Р±РѕС‚Р°РµРј СЃ С„СЊСЋС‡РµСЂСЃР°РјРё.  
